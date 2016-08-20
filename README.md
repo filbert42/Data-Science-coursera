@@ -1,2 +1,2 @@
-# Data-Sciencece-course
+# Data-Science-course
 for JHU Coursera specialization
