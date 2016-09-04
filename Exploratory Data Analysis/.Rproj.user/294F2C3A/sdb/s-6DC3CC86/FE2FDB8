@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## This script using dplyr and tidyr package\n## install.packages(c(\"dplyr\",\"tidyr\")) ## Uncomment this if you have not this packages installed\nlibrary(tidyr)\n## Read data\ndata <- read.table(\"household_power_consumption.txt\", sep = \";\", header =T, \n                   colClasses = c(\"character\", \"character\", rep(\"numeric\", 7)), na = \"?\")\n## Subset data\ndata <- data[data$Date == \"1/2/2007\" | data$Date == \"2/2/2007\", ]\n## Unite Date and Time columns using tidyr\ndata <- data %>% unite(DateTime, Date, Time, sep = \" \")\n## convert DateTime into correct format\ndata$DateTime <- strptime(data$DateTime, \"%d/%m/%Y %H:%M:%S\")\n## Open png device\npng(filename = \"plot3.png\")\n## Create plot\npar(mfrow = c(1,1))\nwith(data, plot(DateTime, Sub_metering_1, type = \"l\", ylab = \"Energy sub metering\", xlab = \"\"))\nwith(data, lines(DateTime, Sub_metering_2, col = \"red\"))\nwith(data, lines(DateTime, Sub_metering_3, col = \"blue\"))\nlegend(\"topright\", col = c(\"black\", \"red\", \"blue\"), legend = c(\"Sub_metering_1\", \"Sub_metering_2\", \"Sub_metering_3\"), lwd = 1)\n## close png device\ndev.off()\n",
+    "created" : 1472986660584.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1644125877",
+    "id" : "FE2FDB8",
+    "lastKnownWriteTime" : 1472988061,
+    "last_content_update" : 1472988061165,
+    "path" : "D:/Учеба/R/workingDirectory/Exploratory Data Analysis/plot3.R",
+    "project_path" : "plot3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
